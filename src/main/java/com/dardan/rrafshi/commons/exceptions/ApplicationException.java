@@ -15,5 +15,4 @@ public abstract class ApplicationException extends Exception
 	{
 		super(message);
 	}
-
 }

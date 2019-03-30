@@ -1,7 +1,7 @@
 package com.dardan.rrafshi.commons.exceptions;
 
 
-public class ApplicationRuntimeException extends RuntimeException
+public abstract class ApplicationRuntimeException extends RuntimeException
 {
 	private static final long serialVersionUID = 1L;
 
@@ -15,5 +15,4 @@ public class ApplicationRuntimeException extends RuntimeException
 	{
 		super(message);
 	}
-
 }

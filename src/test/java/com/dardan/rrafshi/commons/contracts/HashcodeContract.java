@@ -28,5 +28,4 @@ public interface HashcodeContract<T> extends Testable<T>
 		final T differentValue = createNotEqualValue();
 		assertNotEquals(value.hashCode(), differentValue.hashCode());
 	}
-
 }

@@ -47,5 +47,4 @@ public interface EqualsContract<T> extends Testable<T>
 		assertNotEquals(value, differentValue);
 		assertNotEquals(differentValue, value);
 	}
-
 }

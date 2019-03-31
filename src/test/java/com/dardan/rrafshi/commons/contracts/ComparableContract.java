@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 public interface ComparableContract<T extends Comparable<T>> extends Testable<T>
 {
 	T createSmallerValue();

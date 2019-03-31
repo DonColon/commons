@@ -1,4 +1,4 @@
-package com.dardan.rrafshi.commons;
+package com.dardan.rrafshi.commons.security;
 
 import java.security.spec.KeySpec;
 import java.util.Base64;
@@ -13,10 +13,12 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.dardan.rrafshi.commons.Constants;
+
 
 public final class Passwords
 {
-	private static final Logger logger = LogManager.getLogger(Passwords.class);
+	private static final Logger LOGGER = LogManager.getLogger(Passwords.class);
 
 	private static final String AES_SALT = System.getenv("AES_SALT");
 	private static final String AES_SECRET = System.getenv("AES_SECRET");
@@ -39,7 +41,7 @@ public final class Passwords
 			return Base64.getEncoder().encodeToString(cipher.doFinal(passwordToEncrypt.getBytes("UTF-8")));
 
 		} catch(final Exception exception) {
-			logger.error(exception.getMessage(), exception);
+			LOGGER.error(exception.getMessage(), exception);
 		}
 		return null;
 	}
@@ -61,7 +63,7 @@ public final class Passwords
 			return new String(cipher.doFinal(Base64.getDecoder().decode(passwordToDecrypt)));
 
 		} catch(final Exception exception) {
-			logger.error(exception.getMessage(), exception);
+			LOGGER.error(exception.getMessage(), exception);
 		}
 		return null;
 	}

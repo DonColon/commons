@@ -1,6 +1,6 @@
 package com.dardan.rrafshi.commons.examples;
 
-import com.dardan.rrafshi.commons.security.Passwords;
+import com.dardan.rrafshi.commons.crypto.Passwords;
 
 public final class TestEncription
 {

@@ -1,4 +1,4 @@
-package com.dardan.rrafshi.commons.security;
+package com.dardan.rrafshi.commons.crypto;
 
 import java.security.spec.KeySpec;
 import java.util.Base64;

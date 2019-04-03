@@ -21,12 +21,12 @@ public final class KeystoreManager
 	private final Path keystorePath;
 
 
-	public KeystoreManager()
+	public KeystoreManager(final String keystorePath, final String keystoreFilename)
 		throws KeystoreException.KeystoreNotFound
 	{
 		try {
 			this.keystore = new Properties();
-			this.keystorePath = Paths.get(Constants.CRYPTO_PATH, Constants.CRYPTO_FILE);
+			this.keystorePath = Paths.get(keystorePath, keystoreFilename);
 
 			if(Files.notExists(this.keystorePath)) {
 				Files.createDirectories(this.keystorePath.getParent());
@@ -38,6 +38,12 @@ public final class KeystoreManager
 
 			throw new KeystoreException.KeystoreNotFound("Failed to create keystore properties", exception);
 		}
+	}
+
+	public KeystoreManager()
+		throws KeystoreException.KeystoreNotFound
+	{
+		this(Constants.CRYPTO_PATH, Constants.CRYPTO_FILE);
 	}
 
 

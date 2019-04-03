@@ -65,13 +65,13 @@ public final class KeystoreCli
 			}
 			else if(args[0].equals("--help")) {
 				System.out.println("Usage of Keystore CLI: ");
-				System.out.println("**********************************************************************");
+				System.out.println("**************************************");
 				System.out.println("--create - create a new password");
 				System.out.println("--read - show a saved password");
 				System.out.println("--update - update a password");
 				System.out.println("--delete - delete a password");
 				System.out.println("--save - saves a password");
-				System.out.println("**********************************************************************");
+				System.out.println("**************************************");
 				System.out.println("");
 
 			} else {

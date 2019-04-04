@@ -23,8 +23,8 @@ public final class KeystoreCli
 
 			if(args.length < 1) {
 				System.out.println("Wrong usage of Keystore CLI: Type in --help for more information");
-			}
-			else if(args[0].equals("--create")) {
+
+			} else if(args[0].equals("--create")) {
 				System.out.println("Enter the property key, which will asociated with your password:");
 				final String key = scanner.next();
 
@@ -32,14 +32,14 @@ public final class KeystoreCli
 				final String password = scanner.next();
 
 				keystoreManager.createPassword(key, password);
-			}
-			else if(args[0].equals("--read")) {
+
+			} else if(args[0].equals("--read")) {
 				System.out.println("Enter the property key of your password:");
 				final String key = scanner.next();
 
 				System.out.println("Password: " + keystoreManager.retrievePassword(key));
-			}
-			else if(args[0].equals("--update")) {
+
+			} else if(args[0].equals("--update")) {
 				System.out.println("Enter the property key of your password:");
 				final String key = scanner.next();
 
@@ -47,14 +47,13 @@ public final class KeystoreCli
 				final String newPassword = scanner.next();
 
 				keystoreManager.updatePassword(key, newPassword);
-			}
-			else if(args[0].equals("--delete")) {
+			} else if(args[0].equals("--delete")) {
 				System.out.println("Enter the property key of your password:");
 				final String key = scanner.next();
 
 				keystoreManager.deletePassword(key);
-			}
-			else if(args[0].equals("--save")) {
+
+			} else if(args[0].equals("--save")) {
 				System.out.println("Enter the property key of your password:");
 				final String key = scanner.next();
 
@@ -62,8 +61,8 @@ public final class KeystoreCli
 				final String password = scanner.next();
 
 				keystoreManager.savePassword(key, password);
-			}
-			else if(args[0].equals("--help")) {
+
+			} else if(args[0].equals("--help")) {
 				System.out.println("Usage of Keystore CLI: ");
 				System.out.println("**************************************");
 				System.out.println("--create - create a new password");

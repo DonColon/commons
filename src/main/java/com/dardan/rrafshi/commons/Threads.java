@@ -4,6 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 public final class Threads
 {
+	private Threads() {}
+
+
 	public static void safeSleep(final TimeUnit timeUnit, final long duration)
 	{
 		safeSleep(timeUnit.toMillis(duration));
@@ -19,6 +22,4 @@ public final class Threads
 			Thread.currentThread().interrupt();
 		}
 	}
-
-	private Threads() {}
 }

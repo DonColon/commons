@@ -12,13 +12,15 @@ import org.apache.logging.log4j.Logger;
 public final class Performance
 {
 	private static final Logger LOGGER = LogManager.getLogger(Performance.class);
+	private static final Map<String, TimingEntry> TIMING_MAP = new HashMap<>();
 
-	private static final Map<String, TimingEntry> timingMap = new HashMap<>();
+
+	private Performance() {}
 
 
 	public static void startMeasure(final String name)
 	{
-		timingMap.put(name, new TimingEntry(System.nanoTime()));
+		TIMING_MAP.put(name, new TimingEntry(System.nanoTime()));
 	}
 
 	public static void stopMeasure(final String name)
@@ -40,7 +42,7 @@ public final class Performance
 
 	private static TimingEntry getTimingEntry(final String name)
 	{
-		final TimingEntry timingEntry = timingMap.get(name);
+		final TimingEntry timingEntry = TIMING_MAP.get(name);
 
 		if(timingEntry == null)
 			throw new IllegalArgumentException("No data for '" + name + "'");
@@ -74,7 +76,8 @@ public final class Performance
 				return false;
 
 			final TimingEntry entry = (TimingEntry) object;
-			return (this.startTime == entry.startTime && this.stopTime == entry.stopTime);
+			return this.startTime == entry.startTime
+				&& this.stopTime == entry.stopTime;
 		}
 
 		@Override
@@ -83,6 +86,4 @@ public final class Performance
 			return Objects.hash(this.startTime);
 		}
 	}
-
-	private Performance() {}
 }

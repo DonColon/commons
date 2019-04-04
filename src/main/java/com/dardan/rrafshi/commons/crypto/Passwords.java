@@ -24,6 +24,9 @@ public final class Passwords
 	private static final String AES_SECRET = System.getenv("AES_SECRET");
 
 
+	private Passwords() {}
+
+
 	public static String encrypt(final String passwordToEncrypt)
 	{
 		try {
@@ -60,14 +63,11 @@ public final class Passwords
 			final Cipher cipher = Cipher.getInstance(Constants.CRYPTO_TRANSFORMATION);
 			cipher.init(Cipher.DECRYPT_MODE, secretKeySpecification, parameterSpecification);
 
-			return new String(cipher.doFinal(Base64.getDecoder().decode(passwordToDecrypt)));
+			return new String(cipher.doFinal(Base64.getDecoder().decode(passwordToDecrypt)), "UTF-8");
 
 		} catch(final Exception exception) {
 			LOGGER.error(exception.getMessage(), exception);
 		}
 		return null;
 	}
-
-
-	public Passwords() {}
 }

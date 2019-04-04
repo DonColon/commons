@@ -78,7 +78,6 @@ public final class KeystoreManager
 	public void createPassword(final String key, final String password)
 		throws KeystoreException.KeyAlreadyExist, KeystoreException.KeystoreNotFound
 	{
-
 		if(this.keystore.containsKey(key))
 			throw new KeystoreException.KeyAlreadyExist("The key '" + key + "' already exist");
 

@@ -2,6 +2,9 @@ package com.dardan.rrafshi.commons;
 
 public final class Strings
 {
+	private Strings() {}
+
+
 	public static boolean isBlank(final CharSequence value)
 	{
 		if(value == null || value.length() == 0 || " ".equals(value))
@@ -35,7 +38,4 @@ public final class Strings
 
 		return String.join("", value.split(character));
 	}
-
-
-	private Strings() {}
 }

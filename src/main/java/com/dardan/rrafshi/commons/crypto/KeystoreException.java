@@ -5,6 +5,9 @@ import com.dardan.rrafshi.commons.exceptions.ApplicationException;
 
 public final class KeystoreException
 {
+	private KeystoreException() {}
+
+
 	public static class KeystoreNotFound extends ApplicationException
 	{
 		private static final long serialVersionUID = 1L;
@@ -52,7 +55,4 @@ public final class KeystoreException
 			super(message);
 		}
 	}
-
-
-	private KeystoreException() {}
 }

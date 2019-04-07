@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.dardan.rrafshi.commons.Constants;
+import com.dardan.rrafshi.commons.crypto.KeystoreException.KeystoreNotFound;
 
 
 public final class Passwords
@@ -26,6 +27,23 @@ public final class Passwords
 
 	private Passwords() {}
 
+
+	public static String getPasswordFromFile(final String key)
+	{
+		String password = "";
+		try {
+			final KeystoreManager keystoreManager = new KeystoreManager();
+
+			password = keystoreManager.retrievePassword(key);
+
+			return password;
+
+		} catch (final KeystoreNotFound exception) {
+
+			LOGGER.error(exception.getMessage(), exception);
+		}
+		return password;
+	}
 
 	public static String encrypt(final String passwordToEncrypt)
 	{

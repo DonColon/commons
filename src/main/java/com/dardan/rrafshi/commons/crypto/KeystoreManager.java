@@ -1,9 +1,5 @@
 package com.dardan.rrafshi.commons.crypto;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -13,6 +9,8 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 import com.dardan.rrafshi.commons.Constants;
+import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyAlreadyExist;
+import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyNotFound;
 
 
 public final class KeystoreManager
@@ -34,6 +32,7 @@ public final class KeystoreManager
 			} else {
 				this.loadKeystore();
 			}
+
 		} catch (final IOException exception) {
 
 			throw new KeystoreException.KeystoreNotFound("Failed to create keystore properties", exception);
@@ -50,9 +49,7 @@ public final class KeystoreManager
 	public void loadKeystore()
 		throws KeystoreException.KeystoreNotFound
 	{
-		try(InputStream dataIn = new BufferedInputStream(
-				new FileInputStream(this.keystorePath.toFile()))) {
-
+		try(InputStream dataIn = Files.newInputStream(this.keystorePath)) {
 			this.keystore.load(dataIn);
 
 		} catch (final IOException exception) {
@@ -64,10 +61,9 @@ public final class KeystoreManager
 	public void saveKeystore()
 		throws KeystoreException.KeystoreNotFound
 	{
-		try(OutputStream dataOut = new BufferedOutputStream(
-				new FileOutputStream(this.keystorePath.toFile()))) {
-
+		try(OutputStream dataOut = Files.newOutputStream(this.keystorePath)) {
 			this.keystore.store(dataOut, "");
+
 		} catch (final IOException exception) {
 
 			throw new KeystoreException.KeystoreNotFound("Failed to save keystore properties", exception);
@@ -115,11 +111,18 @@ public final class KeystoreManager
 	}
 
 	public void savePassword(final String key, final String password)
-		throws KeystoreException.KeystoreNotFound, KeystoreException.KeyNotFound, KeystoreException.KeyAlreadyExist
+		throws KeystoreException.KeystoreNotFound
 	{
-		if(this.keystore.containsKey(key))
-			this.updatePassword(key, password);
-		else
-			this.createPassword(key, password);
+		try {
+			if(this.keystore.containsKey(key))
+				this.updatePassword(key, password);
+			else
+				this.createPassword(key, password);
+
+		} catch (KeyNotFound | KeyAlreadyExist exception) {
+
+			// This can't happen since this method checks if the key exists or not
+			// and calls the right method for each case.
+		}
 	}
 }

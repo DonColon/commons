@@ -62,6 +62,7 @@ public final class Passwords
 			return Base64.getEncoder().encodeToString(cipher.doFinal(passwordToEncrypt.getBytes("UTF-8")));
 
 		} catch(final Exception exception) {
+
 			LOGGER.error(exception.getMessage(), exception);
 		}
 		return null;
@@ -84,6 +85,7 @@ public final class Passwords
 			return new String(cipher.doFinal(Base64.getDecoder().decode(passwordToDecrypt)), "UTF-8");
 
 		} catch(final Exception exception) {
+
 			LOGGER.error(exception.getMessage(), exception);
 		}
 		return null;

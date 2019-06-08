@@ -5,20 +5,20 @@ public final class Strings
 	private Strings() {}
 
 
-	public static boolean isBlank(final CharSequence value)
+	public static boolean isBlank(final String value)
 	{
-		if(value == null || value.length() == 0 || " ".equals(value))
+		if(value == null || value.trim().length() == 0)
 			return true;
 		else
 			return false;
 	}
 
-	public static boolean isNotBlank(final CharSequence value)
+	public static boolean isNotBlank(final String value)
 	{
 		return !isBlank(value);
 	}
 
-	public static boolean isEmpty(final CharSequence value)
+	public static boolean isEmpty(final String value)
 	{
 		if(value == null || value.length() == 0)
 			return true;
@@ -26,7 +26,7 @@ public final class Strings
 			return false;
 	}
 
-	public static boolean isNotEmpty(final CharSequence value)
+	public static boolean isNotEmpty(final String value)
 	{
 		return !isEmpty(value);
 	}

@@ -2,8 +2,8 @@ package com.dardan.rrafshi.commons.examples;
 
 import java.util.Scanner;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyAlreadyExist;
 import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyNotFound;
@@ -13,7 +13,7 @@ import com.dardan.rrafshi.commons.crypto.KeystoreManager;
 
 public final class KeystoreCli
 {
-	private static final Logger LOGGER = LogManager.getLogger(KeystoreCli.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(KeystoreCli.class);
 
 
 	public static void main(final String[] args)
@@ -76,6 +76,7 @@ public final class KeystoreCli
 			} else {
 				System.out.println("Wrong usage of Keystore CLI: Type in --help for more information");
 			}
+
 		} catch(final KeystoreNotFound | KeyAlreadyExist | KeyNotFound exception) {
 
 			LOGGER.error(exception.getMessage(), exception);

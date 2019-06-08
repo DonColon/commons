@@ -10,8 +10,8 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.dardan.rrafshi.commons.Constants;
 import com.dardan.rrafshi.commons.crypto.KeystoreException.KeystoreNotFound;
@@ -19,7 +19,7 @@ import com.dardan.rrafshi.commons.crypto.KeystoreException.KeystoreNotFound;
 
 public final class Passwords
 {
-	private static final Logger LOGGER = LogManager.getLogger(Passwords.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Passwords.class);
 
 	private static final String AES_SALT = System.getenv("AES_SALT");
 	private static final String AES_SECRET = System.getenv("AES_SECRET");

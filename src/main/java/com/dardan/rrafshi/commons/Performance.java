@@ -5,13 +5,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public final class Performance
 {
-	private static final Logger LOGGER = LogManager.getLogger(Performance.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Performance.class);
 	private static final Map<String, TimingEntry> TIMING_MAP = new HashMap<>();
 
 

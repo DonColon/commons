@@ -149,6 +149,23 @@ public final class StringUtilitiesTest
 	}
 
 
+	@Test
+	@DisplayName("trim string value")
+	public void trimValue()
+	{
+		final String expected = "value";
+		final String actual = Strings.trim("  \tvalue  ");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@DisplayName("trim string value returns null")
+	public void trimValueReturnsNull()
+	{
+		final String actual = Strings.trim(null);
+		assertNull(actual);
+	}
+
 	@ParameterizedTest
 	@CsvSource(value={"value,val", "messages_de_DE.properties,messages"})
 	@DisplayName("string value starts with prefix")

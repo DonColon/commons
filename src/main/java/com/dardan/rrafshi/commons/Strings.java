@@ -1,5 +1,7 @@
 package com.dardan.rrafshi.commons;
 
+import java.util.Locale;
+
 public final class Strings
 {
 	private Strings() {}
@@ -113,6 +115,14 @@ public final class Strings
 	}
 
 
+	public static String trim(final String value)
+	{
+		if(value == null)
+			return null;
+		else
+			return value.trim();
+	}
+
 	public static boolean startsWith(final String value, final String prefix)
 	{
 		if(value == null || prefix == null)
@@ -121,12 +131,165 @@ public final class Strings
 			return value.startsWith(prefix);
 	}
 
+	public static boolean startsWithAny(final String value, final String... prefixesToSearch)
+	{
+		for(final String prefix : prefixesToSearch)
+			if(startsWith(value, prefix))
+				return true;
+
+		return false;
+	}
+
 	public static boolean endsWith(final String value, final String suffix)
 	{
 		if(value == null || suffix == null)
 			return false;
 		else
 			return value.endsWith(suffix);
+	}
+
+	public static boolean endsWithAny(final String value, final String... suffixesToSearch)
+	{
+		for(final String suffix : suffixesToSearch)
+			if(endsWith(value, suffix))
+				return true;
+
+		return false;
+	}
+
+	public static int indexOf(final String value, final String stringToSearch)
+	{
+		if(value == null || stringToSearch == null)
+			return -1;
+		else
+			return value.indexOf(stringToSearch);
+	}
+
+	public static int indexOf(final String value, final char characterToSearch)
+	{
+		return indexOf(value, String.valueOf(characterToSearch));
+	}
+
+	public static int lastIndexOf(final String value, final String stringToSearch)
+	{
+		if(value == null || stringToSearch == null)
+			return -1;
+		else
+			return value.lastIndexOf(stringToSearch);
+	}
+
+	public static int lastIndexOf(final String value, final char characterToSearch)
+	{
+		return lastIndexOf(value, String.valueOf(characterToSearch));
+	}
+
+	public static boolean contains(final String value, final String stringToSearch)
+	{
+		if(value == null || stringToSearch == null)
+			return false;
+		else
+			return value.contains(stringToSearch);
+	}
+
+	public static boolean contains(final String value, final char characterToSearch)
+	{
+		return contains(value, String.valueOf(characterToSearch));
+	}
+
+	public static boolean containsAny(final String value, final String... stringsToSearch)
+	{
+		for(final String stringToSearch : stringsToSearch)
+			if(contains(value, stringToSearch))
+				return true;
+
+		return false;
+	}
+
+	public static String substring(final String value, final int start, final int end)
+	{
+		if(value == null)
+			return null;
+		else
+			return value.substring(start, end);
+	}
+
+	public static String substring(final String value, final int start)
+	{
+		if(value == null)
+			return null;
+		else
+			return value.substring(start);
+	}
+
+	public static String[] split(final String value, final String delimiter)
+	{
+		if(value == null)
+			return null;
+
+		if(delimiter == null)
+			return split(value);
+
+		return value.split(delimiter);
+	}
+
+	public static String[] split(final String value, final char delimiter)
+	{
+		return split(value, String.valueOf(delimiter));
+	}
+
+	public static String[] split(final String value)
+	{
+		return split(value, " ");
+	}
+
+	public static String replace(final String value, final String target, final String replacement)
+	{
+		if(value == null)
+			return null;
+
+		if(target == null || replacement == null)
+			return value;
+
+		return value.replace(target, replacement);
+	}
+
+	public static String replace(final String value, final char target, final char replacement)
+	{
+		return replace(value, String.valueOf(target), String.valueOf(replacement));
+	}
+
+	public static String upperCase(final String value, final Locale locale)
+	{
+		if(value == null)
+			return null;
+		else
+			return value.toUpperCase(locale);
+	}
+
+	public static String upperCase(final String value)
+	{
+		return upperCase(value, Locale.getDefault());
+	}
+
+	public static String lowerCase(final String value, final Locale locale)
+	{
+		if(value == null)
+			return null;
+		else
+			return value.toLowerCase(locale);
+	}
+
+	public static String lowerCase(final String value)
+	{
+		return lowerCase(value, Locale.getDefault());
+	}
+
+	public static String capitalize(final String value)
+	{
+		if(value == null)
+			return null;
+		else
+			return Character.toTitleCase(value.charAt(0)) + value.substring(1);
 	}
 
 

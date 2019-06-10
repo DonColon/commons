@@ -55,12 +55,35 @@ public final class Strings
 			return value.chars().allMatch(Character::isLetter);
 	}
 
-	public static boolean isNumeric(final String value)
+	public static boolean isNotAlpha(final String value)
+	{
+		return !isAlpha(value);
+	}
+
+	public static boolean isNumber(final String value)
 	{
 		if(value == null)
 			return false;
 		else
 			return value.matches("-?\\d+(\\.\\d+)?");
+	}
+
+	public static boolean isNotNumber(final String value)
+	{
+		return !isNumber(value);
+	}
+
+	public static boolean isNumeric(final String value)
+	{
+		if(value == null)
+			return false;
+		else
+			return value.chars().allMatch(Character::isDigit);
+	}
+
+	public static boolean isNotNumeric(final String value)
+	{
+		return !isNumeric(value);
 	}
 
 	public static boolean isAlphanumeric(final String value)
@@ -71,6 +94,11 @@ public final class Strings
 			return value.chars().allMatch(Character::isLetterOrDigit);
 	}
 
+	public static boolean isNotAlphanumeric(final String value)
+	{
+		return !isAlphanumeric(value);
+	}
+
 	public static boolean isWhitespace(final String value)
 	{
 		if(value == null)
@@ -78,6 +106,29 @@ public final class Strings
 		else
 			return value.chars().allMatch(Character::isWhitespace);
 	}
+
+	public static boolean isNotWhitespace(final String value)
+	{
+		return !isWhitespace(value);
+	}
+
+
+	public static boolean startsWith(final String value, final String prefix)
+	{
+		if(value == null || prefix == null)
+			return false;
+		else
+			return value.startsWith(prefix);
+	}
+
+	public static boolean endsWith(final String value, final String suffix)
+	{
+		if(value == null || suffix == null)
+			return false;
+		else
+			return value.endsWith(suffix);
+	}
+
 
 	public static String remove(final String value, final String substring)
 	{
@@ -103,7 +154,7 @@ public final class Strings
 		if(value.length() <= maxWidth)
 			return value;
 
-		return value.substring(0, maxWidth + 1);
+		return value.substring(0, maxWidth);
 	}
 
 	public static String abbreviate(final String value, final int maxWidth)
@@ -142,7 +193,7 @@ public final class Strings
 			return value;
 
 		if(value.startsWith(wrapToken) && value.endsWith(wrapToken)) {
-			return value.substring(wrapToken.length() + 1, value.length() - wrapToken.length() - 1);
+			return value.substring(wrapToken.length(), value.length() - wrapToken.length());
 		} else {
 			return value;
 		}

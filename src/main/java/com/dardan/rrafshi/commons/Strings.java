@@ -7,7 +7,7 @@ public final class Strings
 	private Strings() {}
 
 
-	public static boolean isEquals(final String value, final String other)
+	public static boolean equals(final String value, final String other)
 	{
 		if(value == null || other == null)
 			return false;
@@ -18,9 +18,27 @@ public final class Strings
 			return false;
 	}
 
-	public static boolean isNotEquals(final String value, final String other)
+	public static boolean equalsAny(final String value, final String... others)
 	{
-		return !isEquals(value, other);
+		for(final String other : others)
+			if(equals(value, other))
+				return true;
+
+		return false;
+	}
+
+	public static boolean notEquals(final String value, final String other)
+	{
+		return !equals(value, other);
+	}
+
+	public static boolean equalsNone(final String value, final String... others)
+	{
+		for(final String other : others)
+			if(notEquals(value, other))
+				return true;
+
+		return false;
 	}
 
 	public static boolean isBlank(final String value)

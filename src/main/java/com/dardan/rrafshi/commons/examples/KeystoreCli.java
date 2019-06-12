@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dardan.rrafshi.commons.Strings;
 import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyAlreadyExist;
 import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyNotFound;
 import com.dardan.rrafshi.commons.crypto.KeystoreException.KeystoreNotFound;
@@ -24,7 +25,7 @@ public final class KeystoreCli
 			if(args.length < 1) {
 				System.out.println("Wrong usage of Keystore CLI: Type in --help for more information");
 
-			} else if(args[0].equals("--create")) {
+			} else if(Strings.equalsAny(args[0], "--create", "-c")) {
 				System.out.println("Enter the property key, which will asociated with your password:");
 				final String key = scanner.next();
 
@@ -33,13 +34,13 @@ public final class KeystoreCli
 
 				keystoreManager.createPassword(key, password);
 
-			} else if(args[0].equals("--read")) {
+			} else if(Strings.equalsAny(args[0], "--read", "-r")) {
 				System.out.println("Enter the property key of your password:");
 				final String key = scanner.next();
 
 				System.out.println("Password: " + keystoreManager.retrievePassword(key));
 
-			} else if(args[0].equals("--update")) {
+			} else if(Strings.equalsAny(args[0], "--update", "-u")) {
 				System.out.println("Enter the property key of your password:");
 				final String key = scanner.next();
 
@@ -47,13 +48,14 @@ public final class KeystoreCli
 				final String newPassword = scanner.next();
 
 				keystoreManager.updatePassword(key, newPassword);
-			} else if(args[0].equals("--delete")) {
+
+			} else if(Strings.equalsAny(args[0], "--delete", "-d")) {
 				System.out.println("Enter the property key of your password:");
 				final String key = scanner.next();
 
 				keystoreManager.deletePassword(key);
 
-			} else if(args[0].equals("--save")) {
+			} else if(Strings.equalsAny(args[0], "--save", "-s")) {
 				System.out.println("Enter the property key of your password:");
 				final String key = scanner.next();
 
@@ -62,7 +64,7 @@ public final class KeystoreCli
 
 				keystoreManager.savePassword(key, password);
 
-			} else if(args[0].equals("--help")) {
+			} else if(Strings.equalsAny(args[0], "--help", "-h")) {
 				System.out.println("Usage of Keystore CLI: ");
 				System.out.println("**************************************");
 				System.out.println("--create - create a new password");

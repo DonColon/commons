@@ -81,7 +81,7 @@ public final class KeystoreCli
 
 		} catch(final KeystoreNotFound | KeyAlreadyExist | KeyNotFound exception) {
 
-			LOGGER.error(exception.getMessage(), exception);
+			LOGGER.error("Failed to execute command", exception);
 		}
 	}
 }

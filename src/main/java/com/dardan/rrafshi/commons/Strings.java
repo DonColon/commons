@@ -175,6 +175,14 @@ public final class Strings
 		return false;
 	}
 
+	public static boolean matches(final String value, final String pattern)
+	{
+		if(value == null || pattern == null)
+			return false;
+		else
+			return value.matches(pattern);
+	}
+
 	public static int indexOf(final String value, final String stringToSearch)
 	{
 		if(value == null || stringToSearch == null)
@@ -373,11 +381,10 @@ public final class Strings
 		if(wrapToken == null)
 			return value;
 
-		if(value.startsWith(wrapToken) && value.endsWith(wrapToken)) {
+		if(value.startsWith(wrapToken) && value.endsWith(wrapToken))
 			return value.substring(wrapToken.length(), value.length() - wrapToken.length());
-		} else {
+		else
 			return value;
-		}
 	}
 
 	public static String unwrap(final String value, final char wrapToken)

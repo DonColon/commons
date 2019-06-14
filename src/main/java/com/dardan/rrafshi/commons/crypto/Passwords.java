@@ -63,7 +63,7 @@ public final class Passwords
 
 		} catch(final Exception exception) {
 
-			LOGGER.error(exception.getMessage(), exception);
+			LOGGER.error("Failed to encrypt password", exception);
 		}
 
 		return null;
@@ -90,7 +90,7 @@ public final class Passwords
 
 		} catch(final Exception exception) {
 
-			LOGGER.error(exception.getMessage(), exception);
+			LOGGER.error("Failed to decrypt password", exception);
 		}
 
 		return null;

@@ -1,4 +1,4 @@
-package com.dardan.rrafshi.commons;
+package com.dardan.rrafshi.commons.reflect;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
@@ -10,15 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.dardan.rrafshi.commons.Strings;
 
 
 public final class Reflections
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Reflections.class);
-
-
 	private Reflections() {}
 
 
@@ -36,7 +32,8 @@ public final class Reflections
 		final Type genericType = classType.getGenericSuperclass();
 
 		if(!(genericType instanceof ParameterizedType))
-			return null;
+			throw new ReflectException.GenericTypeNotFound("the class '" + classType.getName() + "' has no generic type");
+
 
 		final ParameterizedType type = (ParameterizedType) genericType;
 		final Type[] types =  type.getActualTypeArguments();
@@ -45,7 +42,7 @@ public final class Reflections
 			return null;
 
 		if(!(types[index] instanceof Class))
-			return null;
+			throw new ReflectException.GenericTypeNotFound("The type '" + types[index].getTypeName() + "' is not a class type");
 
 		return (Class<?>) types[index];
 	}
@@ -96,7 +93,7 @@ public final class Reflections
 		final Field field = getField(classType, name);
 
 		if(field == null)
-			return null;
+			throw new ReflectException.FieldNotFound("There is no such field '" + name + "' in the class '" + classType.getName() + "'");
 
 		makeAccessible(field);
 
@@ -114,7 +111,7 @@ public final class Reflections
 		final Field field = getField(target.getClass(), name);
 
 		if(field == null)
-			return null;
+			throw new ReflectException.FieldNotFound("There is no such field '" + name + "' in the class '" + target.getClass().getName() + "'");
 
 		makeAccessible(field);
 
@@ -132,7 +129,7 @@ public final class Reflections
 		final Field field = getField(classType, name);
 
 		if(field == null)
-			return;
+			throw new ReflectException.FieldNotFound("There is no such field '" + name + "' in the class '" + classType.getName() + "'");
 
 		makeAccessible(field);
 
@@ -141,7 +138,7 @@ public final class Reflections
 
 		} catch (final IllegalAccessException exception) {
 
-			LOGGER.error("Failed to set field '" + name + "' with value '" + value + "'", exception);
+			throw new ReflectException.AssigningFailed("Failed to set field '" + name + "' with value '" + value + "'", exception);
 		}
 	}
 
@@ -150,7 +147,7 @@ public final class Reflections
 		final Field field = getField(target.getClass(), name);
 
 		if(field == null)
-			return;
+			throw new ReflectException.FieldNotFound("There is no such field '" + name + "' in the class '" + target.getClass().getName() + "'");
 
 		makeAccessible(field);
 
@@ -159,7 +156,7 @@ public final class Reflections
 
 		} catch (final IllegalAccessException exception) {
 
-			LOGGER.error("Failed to set field '" + name + "' with value '" + value + "'", exception);
+			throw new ReflectException.AssigningFailed("Failed to set field '" + name + "' with value '" + value + "'", exception);
 		}
 	}
 
@@ -204,9 +201,6 @@ public final class Reflections
 		if(Strings.isBlank(name))
 			return null;
 
-		if(Strings.matches(name, "^[a-z][a-zA-Z0-9]+$"))
-			return null;
-
 		if(returnType == boolean.class)
 			return getMethod(classType, "is" + Strings.capitalize(name));
 		else
@@ -216,9 +210,6 @@ public final class Reflections
 	public static Method getSetter(final Class<?> classType, final String name, final Class<?> parameterType)
 	{
 		if(Strings.isBlank(name))
-			return null;
-
-		if(Strings.matches(name, "^[a-z][a-zA-Z0-9]+$"))
 			return null;
 
 		return getMethod(classType, "set" + Strings.capitalize(name), parameterType);
@@ -237,15 +228,14 @@ public final class Reflections
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public static <R> R getProperty(final Object target, final String name, final Class<? extends R> returnType)
 	{
 		final Method getter = getGetter(target.getClass(), name, returnType);
 
 		if(getter == null)
-			return null;
+			throw new ReflectException.MethodNotFound("There is no get method for the field '" + name + "' in the class '" + target.getClass().getName() + "'");
 
-		return (R) invokeMethod(getter, target);
+		return returnType.cast(invokeMethod(getter, target));
 	}
 
 	public static <T> void setProperty(final Object target, final String name, final Class<? super T> parameterType, final T value)
@@ -253,7 +243,7 @@ public final class Reflections
 		final Method setter = getSetter(target.getClass(), name, parameterType);
 
 		if(setter == null)
-			return;
+			throw new ReflectException.MethodNotFound("There is no set method for the field '" + name + "' in the class '" + target.getClass().getName() + "'");
 
 		invokeMethod(setter, target, value);
 	}

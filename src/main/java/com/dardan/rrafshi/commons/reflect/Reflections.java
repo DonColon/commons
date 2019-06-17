@@ -34,7 +34,6 @@ public final class Reflections
 		if(!(genericType instanceof ParameterizedType))
 			throw new ReflectException.GenericTypeNotFound("the class '" + classType.getName() + "' has no generic type");
 
-
 		final ParameterizedType type = (ParameterizedType) genericType;
 		final Type[] types =  type.getActualTypeArguments();
 

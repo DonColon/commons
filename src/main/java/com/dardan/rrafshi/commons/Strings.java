@@ -34,11 +34,7 @@ public final class Strings
 
 	public static boolean equalsNone(final String value, final String... others)
 	{
-		for(final String other : others)
-			if(notEquals(value, other))
-				return true;
-
-		return false;
+		return !equalsAny(value, others);
 	}
 
 	public static boolean isBlank(final String value)
@@ -158,6 +154,16 @@ public final class Strings
 		return false;
 	}
 
+	public static boolean startsNotWith(final String value, final String prefix)
+	{
+		return !startsWith(value, prefix);
+	}
+
+	public static boolean startsWithNone(final String value, final String... prefixesToSearch)
+	{
+		return !startsWithAny(value, prefixesToSearch);
+	}
+
 	public static boolean endsWith(final String value, final String suffix)
 	{
 		if(value == null || suffix == null)
@@ -175,12 +181,41 @@ public final class Strings
 		return false;
 	}
 
+	public static boolean endsNotWith(final String value, final String suffix)
+	{
+		return !endsWith(value, suffix);
+	}
+
+	public static boolean endsWithNone(final String value, final String... suffixesToSearch)
+	{
+		return !endsWithAny(value, suffixesToSearch);
+	}
+
 	public static boolean matches(final String value, final String pattern)
 	{
 		if(value == null || pattern == null)
 			return false;
 		else
 			return value.matches(pattern);
+	}
+
+	public static boolean matchesAny(final String value, final String... patterns)
+	{
+		for(final String pattern : patterns)
+			if(matches(value, pattern))
+				return true;
+
+		return false;
+	}
+
+	public static boolean matchesNot(final String value, final String pattern)
+	{
+		return !matches(value, pattern);
+	}
+
+	public static boolean matchesNone(final String value, final String... patterns)
+	{
+		return !matchesAny(value, patterns);
 	}
 
 	public static int indexOf(final String value, final String stringToSearch)
@@ -229,6 +264,35 @@ public final class Strings
 				return true;
 
 		return false;
+	}
+
+	public static boolean containsAny(final String value, final char... charactersToSearch)
+	{
+		for(final char character : charactersToSearch)
+			if(contains(value, character))
+				return true;
+
+		return false;
+	}
+
+	public static boolean containsNot(final String value, final String stringToSearch)
+	{
+		return !contains(value, stringToSearch);
+	}
+
+	public static boolean containsNot(final String value, final char characterToSearch)
+	{
+		return !contains(value, characterToSearch);
+	}
+
+	public static boolean containsNone(final String value, final String... stringsToSearch)
+	{
+		return !containsAny(value, stringsToSearch);
+	}
+
+	public static boolean containsNone(final String value, final char... charactersToSearch)
+	{
+		return !containsAny(value, charactersToSearch);
 	}
 
 	public static String substring(final String value, final int start, final int end)

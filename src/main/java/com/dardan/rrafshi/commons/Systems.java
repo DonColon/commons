@@ -14,7 +14,7 @@ public final class Systems
 	private Systems() {}
 
 
-	public static Locale getUserLocale()
+	public static Locale getLocale()
 	{
 		final String language = getSystemProperty("user.language");
 		final String country = getSystemProperty("user.country");
@@ -29,7 +29,7 @@ public final class Systems
 				.build();
 	}
 
-	public static ZoneId getUserTimezone()
+	public static ZoneId getTimezone()
 	{
 		final String timezone = getSystemProperty("user.timezone");
 		return ZoneId.of(timezone);

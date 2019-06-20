@@ -2,6 +2,7 @@ package com.dardan.rrafshi.commons;
 
 import java.util.Locale;
 
+
 public final class Strings
 {
 	private Strings() {}
@@ -454,5 +455,28 @@ public final class Strings
 	public static String unwrap(final String value, final char wrapToken)
 	{
 		return unwrap(value, String.valueOf(wrapToken));
+	}
+
+	public static String indent(final String value, final int count)
+	{
+		if(value == null)
+			return null;
+
+		if(count == 0)
+			return value;
+
+		String indentedValue = value;
+
+		if(count > 0)
+			for(int i = 0; i < count; i++)
+				indentedValue = " " + indentedValue;
+		else
+			for(int i = 0; i < count; i++)
+				if(Character.isWhitespace(value.charAt(i)))
+					indentedValue = value.substring(i);
+				else
+					break;
+
+		return indentedValue;
 	}
 }

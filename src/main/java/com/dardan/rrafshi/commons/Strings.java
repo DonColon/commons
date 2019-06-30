@@ -1,5 +1,6 @@
 package com.dardan.rrafshi.commons;
 
+import java.util.Collection;
 import java.util.Locale;
 
 
@@ -455,6 +456,29 @@ public final class Strings
 	public static String unwrap(final String value, final char wrapToken)
 	{
 		return unwrap(value, String.valueOf(wrapToken));
+	}
+
+	public static <T> String valueOf(final Collection<T> values, final String delimiter)
+	{
+		if(values == null || delimiter == null)
+			return null;
+
+		final StringBuilder builder = new StringBuilder();
+
+		for(final T value : values) {
+			builder.append(value);
+			builder.append(delimiter);
+		}
+
+		if(builder.length() > 0)
+			builder.deleteCharAt(builder.length() - 1);
+
+		return builder.toString();
+	}
+
+	public static <T> String valueOf(final Collection<T> values)
+	{
+		return valueOf(values, " ");
 	}
 
 	public static String indent(final String value, final int count)

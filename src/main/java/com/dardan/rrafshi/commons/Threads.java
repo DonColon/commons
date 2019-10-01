@@ -11,9 +11,9 @@ public final class Threads
 	private Threads() {}
 
 
-	public static void safeSleep(final TimeUnit timeUnit, final long duration)
+	public static void safeSleep(final long duration, final TimeUnit unit)
 	{
-		safeSleep(timeUnit.toMillis(duration));
+		safeSleep(unit.toMillis(duration));
 	}
 
 	public static void safeSleep(final long durationInMilliseconds)

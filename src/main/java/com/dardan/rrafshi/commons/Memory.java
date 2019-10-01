@@ -3,6 +3,8 @@ package com.dardan.rrafshi.commons;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dardan.rrafshi.commons.model.ByteUnit;
+
 
 public final class Memory
 {
@@ -29,25 +31,25 @@ public final class Memory
 		return getTotalMemory() - getFreeMemory();
 	}
 
-	public static boolean isMemoryUsageExceeded(final long threshold)
+	public static boolean isMemoryUsageExceeded(final long threshold, final ByteUnit unit)
 	{
-		final double usedMemory = getUsedMemory() / 1000000.0;
+		final double usedMemory = getUsedMemory();
 
-		if(usedMemory >= threshold)
+		if(usedMemory >= unit.toByte(threshold))
 			return true;
 		else
 			return false;
 	}
 
 
-	public static void printMemoryUsage()
+	public static void printMemoryUsage(final ByteUnit unit)
 	{
-		final double totalMemory = getTotalMemory() / 1000000.0;
-		final double freeMemory = getFreeMemory() / 1000000.0;
-		final double usedMemory = getUsedMemory() / 1000000.0;
+		final long totalMemory = unit.convert(getTotalMemory(), ByteUnit.BYTE);
+		final long freeMemory = unit.convert(getFreeMemory(), ByteUnit.BYTE);
+		final long usedMemory = unit.convert(getUsedMemory(), ByteUnit.BYTE);
 
-		LOGGER.info("Total memory: " + totalMemory + " MB");
-		LOGGER.info("Free memory: " + freeMemory + " MB");
-		LOGGER.info("Used memory: " + usedMemory + " MB");
+		LOGGER.info("Total memory: " + totalMemory + " " + unit.getAbbreviation());
+		LOGGER.info("Free memory: " + freeMemory + " " + unit.getAbbreviation());
+		LOGGER.info("Used memory: " + usedMemory + " " + unit.getAbbreviation());
 	}
 }

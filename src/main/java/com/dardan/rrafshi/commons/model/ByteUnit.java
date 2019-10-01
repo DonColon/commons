@@ -57,6 +57,12 @@ public enum ByteUnit
 		{
 			return value / (B4/B0);
 		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toByte(value);
+		}
 	},
 
 	KILOBYTE("Kilobyte", "kB")
@@ -117,6 +123,12 @@ public enum ByteUnit
 		{
 			final long bytes = this.toByte(value);
 			return bytes / (B4/B0);
+		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toKilobyte(value);
 		}
 	},
 
@@ -179,6 +191,12 @@ public enum ByteUnit
 			final long bytes = this.toByte(value);
 			return bytes / (B4/B0);
 		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toMegabyte(value);
+		}
 	},
 
 	GIGABYTE("Gigabyte", "GB")
@@ -239,6 +257,12 @@ public enum ByteUnit
 		{
 			final long bytes = this.toByte(value);
 			return bytes / (B4/B0);
+		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toGigabyte(value);
 		}
 	},
 
@@ -301,6 +325,12 @@ public enum ByteUnit
 			final long bytes = this.toByte(value);
 			return bytes / (B4/B0);
 		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toTerrabyte(value);
+		}
 	},
 
 	KIBIBYTE("Kibibyte", "KiB")
@@ -361,6 +391,12 @@ public enum ByteUnit
 		public long toTebibyte(final long value)
 		{
 			return value / (B4/B1);
+		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toKibibyte(value);
 		}
 	},
 
@@ -423,6 +459,12 @@ public enum ByteUnit
 		{
 			return value / (B4/B2);
 		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toMebibyte(value);
+		}
 	},
 
 	GIBIBYTE("Gibibyte", "GiB")
@@ -483,6 +525,12 @@ public enum ByteUnit
 		public long toTebibyte(final long value)
 		{
 			return value / (B4/B3);
+		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toGibibyte(value);
 		}
 	},
 
@@ -545,6 +593,12 @@ public enum ByteUnit
 		{
 			return value;
 		}
+
+		@Override
+		public long convert(final long value, final ByteUnit unit)
+		{
+			return unit.toTebibyte(value);
+		}
 	};
 
 
@@ -593,6 +647,8 @@ public enum ByteUnit
 	public abstract long toMebibyte(long value);
 	public abstract long toGibibyte(long value);
 	public abstract long toTebibyte(long value);
+
+	public abstract long convert(long value, ByteUnit unit);
 
 
 	public String getName()

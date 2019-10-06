@@ -1,9 +1,7 @@
-package com.dardan.rrafshi.commons;
+package com.dardan.rrafshi.commons.management;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.dardan.rrafshi.commons.model.ByteUnit;
 
 
 public final class Memory

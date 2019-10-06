@@ -1,4 +1,4 @@
-package com.dardan.rrafshi.commons.model;
+package com.dardan.rrafshi.commons.management;
 
 public enum ByteUnit
 {

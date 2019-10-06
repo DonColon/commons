@@ -1,9 +1,11 @@
-package com.dardan.rrafshi.commons;
+package com.dardan.rrafshi.commons.management;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+
+import com.dardan.rrafshi.commons.Strings;
 
 
 public final class Threads

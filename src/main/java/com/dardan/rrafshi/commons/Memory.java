@@ -14,6 +14,36 @@ public final class Memory
 	private Memory() {}
 
 
+	public static boolean isUsedMemoryOver(final long threshold, final ByteUnit unit)
+	{
+		final double usedMemory = getUsedMemory();
+
+		if(usedMemory >= unit.toByte(threshold))
+			return true;
+		else
+			return false;
+	}
+
+	public static boolean isUsedMemoryBelow(final long threshold, final ByteUnit unit)
+	{
+		return !isUsedMemoryOver(threshold, unit);
+	}
+
+	public static boolean isFreeMemoryOver(final long threshold, final ByteUnit unit)
+	{
+		final double freeMemory = getFreeMemory();
+
+		if(freeMemory >= unit.toByte(threshold))
+			return true;
+		else
+			return false;
+	}
+
+	public static boolean isFreeMemoryBelow(final long threshold, final ByteUnit unit)
+	{
+		return !isFreeMemoryOver(threshold, unit);
+	}
+
 	public static long getTotalMemory()
 	{
 		final Runtime runtime = Runtime.getRuntime();
@@ -29,16 +59,6 @@ public final class Memory
 	public static long getUsedMemory()
 	{
 		return getTotalMemory() - getFreeMemory();
-	}
-
-	public static boolean isMemoryUsageExceeded(final long threshold, final ByteUnit unit)
-	{
-		final double usedMemory = getUsedMemory();
-
-		if(usedMemory >= unit.toByte(threshold))
-			return true;
-		else
-			return false;
 	}
 
 

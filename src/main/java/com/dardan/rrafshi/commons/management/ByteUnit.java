@@ -620,7 +620,7 @@ public enum ByteUnit
 	private static long scale(final long value, final long factor, final long boundary)
 	{
 		if(value > boundary) return Long.MAX_VALUE;
-		if(value < boundary) return Long.MIN_VALUE;
+		if(value < -boundary) return Long.MIN_VALUE;
 		return value * factor;
 	}
 

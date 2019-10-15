@@ -21,7 +21,7 @@ public final class Randomizer
 			return lower;
 
 		final Random random = new Random(System.nanoTime());
-		return lower + random.nextLong() * (upper - lower + 1);
+		return (long) (lower + random.nextDouble() * (upper - lower + 1));
 	}
 
 	public static long generateLong(final long upper)
@@ -31,7 +31,7 @@ public final class Randomizer
 
 	public static long generateLong()
 	{
-		return generateLong(Long.MAX_VALUE);
+		return generateLong(Long.MAX_VALUE - 1);
 	}
 
 	public static long[] generateLongs(final int size)
@@ -69,7 +69,7 @@ public final class Randomizer
 
 	public static int generateInteger()
 	{
-		return generateInteger(Integer.MAX_VALUE);
+		return generateInteger(Integer.MAX_VALUE - 1);
 	}
 
 	public static int[] generateIntegers(final int size)
@@ -97,7 +97,7 @@ public final class Randomizer
 			return lower;
 
 		final Random random = new Random(System.nanoTime());
-		return lower + random.nextDouble() * (upper - lower + 1);
+		return lower + random.nextDouble() * (upper - lower);
 	}
 
 	public static double generateDouble(final double upper)
@@ -135,7 +135,7 @@ public final class Randomizer
 			return lower;
 
 		final Random random = new Random(System.nanoTime());
-		return lower + random.nextFloat() * (upper - lower + 1);
+		return lower + random.nextFloat() * (upper - lower);
 	}
 
 	public static float generateFloat(final float upper)
@@ -182,10 +182,10 @@ public final class Randomizer
 
 	public static <T> T anyOf(final T[] items)
 	{
-		if(items == null || items.length == 0)
+		if(items.length == 0)
 			return null;
 
-		return items[generateInteger(items.length)];
+		return items[generateInteger(items.length - 1)];
 	}
 
 	public static <T> T anyOf(final List<T> items)
@@ -193,6 +193,6 @@ public final class Randomizer
 		if(items == null || items.size() == 0)
 			return null;
 
-		return items.get(generateInteger(items.size()));
+		return items.get(generateInteger(items.size() - 1));
 	}
 }

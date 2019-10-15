@@ -42,6 +42,18 @@ public final class Memory
 		return !isFreeMemoryOver(threshold, unit);
 	}
 
+	public static void printMemoryUsage(final ByteUnit unit)
+	{
+		final long totalMemory = unit.convert(getTotalMemory(), ByteUnit.BYTE);
+		final long freeMemory = unit.convert(getFreeMemory(), ByteUnit.BYTE);
+		final long usedMemory = unit.convert(getUsedMemory(), ByteUnit.BYTE);
+
+		LOGGER.info("Total memory: " + totalMemory + " " + unit.getAbbreviation());
+		LOGGER.info("Free memory: " + freeMemory + " " + unit.getAbbreviation());
+		LOGGER.info("Used memory: " + usedMemory + " " + unit.getAbbreviation());
+	}
+
+
 	public static long getTotalMemory()
 	{
 		final Runtime runtime = Runtime.getRuntime();
@@ -57,17 +69,5 @@ public final class Memory
 	public static long getUsedMemory()
 	{
 		return getTotalMemory() - getFreeMemory();
-	}
-
-
-	public static void printMemoryUsage(final ByteUnit unit)
-	{
-		final long totalMemory = unit.convert(getTotalMemory(), ByteUnit.BYTE);
-		final long freeMemory = unit.convert(getFreeMemory(), ByteUnit.BYTE);
-		final long usedMemory = unit.convert(getUsedMemory(), ByteUnit.BYTE);
-
-		LOGGER.info("Total memory: " + totalMemory + " " + unit.getAbbreviation());
-		LOGGER.info("Free memory: " + freeMemory + " " + unit.getAbbreviation());
-		LOGGER.info("Used memory: " + usedMemory + " " + unit.getAbbreviation());
 	}
 }

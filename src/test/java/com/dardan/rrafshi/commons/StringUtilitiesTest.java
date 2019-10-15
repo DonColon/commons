@@ -172,6 +172,7 @@ public final class StringUtilitiesTest
 	public void valueStartsWithPrefix(final String value, final String prefix)
 	{
 		assertTrue(Strings.startsWith(value, prefix));
+		assertFalse(Strings.startsNotWith(value, prefix));
 	}
 
 	@ParameterizedTest

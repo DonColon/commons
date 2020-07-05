@@ -5,7 +5,7 @@
 
 	<groupId>com.dardan.rrafshi</groupId>
 	<artifactId>commons</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 
 	<name>commons</name>
 	<description>A common java module for all java applications</description>
@@ -44,7 +44,7 @@
 		<junit.version>5.4.1</junit.version>
 		<junit.platform.version>1.4.1</junit.platform.version>
 		<mockito.version>2.25.1</mockito.version>
-		<log4j.version>2.11.2</log4j.version>
+		<log4j.version>2.13.3</log4j.version>
 	</properties>
 
 	<dependencies>

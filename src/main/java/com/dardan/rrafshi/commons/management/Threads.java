@@ -1,9 +1,11 @@
-package com.dardan.rrafshi.commons;
+package com.dardan.rrafshi.commons.management;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+
+import com.dardan.rrafshi.commons.Strings;
 
 
 public final class Threads
@@ -11,9 +13,9 @@ public final class Threads
 	private Threads() {}
 
 
-	public static void safeSleep(final TimeUnit timeUnit, final long duration)
+	public static void safeSleep(final long duration, final TimeUnit unit)
 	{
-		safeSleep(timeUnit.toMillis(duration));
+		safeSleep(unit.toMillis(duration));
 	}
 
 	public static void safeSleep(final long durationInMilliseconds)

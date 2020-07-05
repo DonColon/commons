@@ -6,7 +6,8 @@ import java.nio.file.Paths;
 import java.time.ZoneId;
 import java.util.Locale;
 
-import com.dardan.rrafshi.commons.model.SystemInfo;
+import com.dardan.rrafshi.commons.model.JavaVersion;
+import com.dardan.rrafshi.commons.model.OperatingSystem;
 
 
 public final class Systems
@@ -40,13 +41,27 @@ public final class Systems
 		return getSystemProperty("user.name");
 	}
 
-	public static SystemInfo getSystemInfo()
+	public static OperatingSystem getOperatingSystem()
 	{
+		final Runtime runtime = Runtime.getRuntime();
+
 		final String name = getSystemProperty("os.name");
 		final String version = getSystemProperty("os.version");
 		final String architecture = getSystemProperty("os.arch");
 
-		return new SystemInfo(name, version, architecture);
+		return new OperatingSystem(name, version, architecture, runtime.availableProcessors());
+	}
+
+	public static JavaVersion getJavaVersion()
+	{
+		final String version = getSystemProperty("java.version");
+		final String vmVersion = getSystemProperty("java.vm.version");
+		final String runtimeVersion = getSystemProperty("java.runtime.version");
+
+		final String specificationVersion = getSystemProperty("java.specification.version");
+		final String vmSpecificationVersion = getSystemProperty("java.vm.specification.version");
+
+		return new JavaVersion(version, vmVersion, runtimeVersion, specificationVersion, vmSpecificationVersion);
 	}
 
 	public static Path getHomePath()
@@ -69,6 +84,11 @@ public final class Systems
 		return Paths.get(getSystemProperty("java.io.tmpdir"));
 	}
 
+	public static Path getJavaLibraryPath()
+	{
+		return Paths.get(getSystemProperty("java.ext.dirs"));
+	}
+
 	public static Charset getFileEncoding()
 	{
 		final String encoding = getSystemProperty("file.encoding");
@@ -88,21 +108,6 @@ public final class Systems
 	public static String getOsPathSeparator()
 	{
 		return getSystemProperty("path.separator");
-	}
-
-	public static String getJavaVersion()
-	{
-		return getSystemProperty("java.version");
-	}
-
-	public static String getJavaRuntimeVersion()
-	{
-		return getSystemProperty("java.runtime.version");
-	}
-
-	public static String getJavaVmVersion()
-	{
-		return getSystemProperty("java.vm.version");
 	}
 
 

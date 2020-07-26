@@ -376,6 +376,112 @@ public final class Strings
 		return lowerCase(value, Locale.getDefault());
 	}
 
+	public static String upperSnakeCase(final String value, final Locale locale)
+	{
+		if(value == null)
+			return null;
+
+		final String snakeCase = value.replaceAll("\\s+", "_");
+
+		return snakeCase.toUpperCase(locale);
+	}
+
+	public static String upperSnakeCase(final String value)
+	{
+		return upperSnakeCase(value, Locale.getDefault());
+	}
+
+	public static String lowerSnakeCase(final String value, final Locale locale)
+	{
+		if(value == null)
+			return null;
+
+		final String snakeCase = value.replaceAll("\\s+", "_");
+
+		return snakeCase.toLowerCase(locale);
+	}
+
+	public static String lowerSnakeCase(final String value)
+	{
+		return lowerSnakeCase(value, Locale.getDefault());
+	}
+
+	public static String upperKebabCase(final String value, final Locale locale)
+	{
+		if(value == null)
+			return null;
+
+		final String kebabCase = value.replaceAll("\\s+", "-");
+
+		return kebabCase.toUpperCase(locale);
+	}
+
+	public static String upperKebabCase(final String value)
+	{
+		return upperKebabCase(value, Locale.getDefault());
+	}
+
+	public static String lowerKebabCase(final String value, final Locale locale)
+	{
+		if(value == null)
+			return null;
+
+		final String kebabCase = value.replaceAll("\\s+", "-");
+
+		return kebabCase.toLowerCase(locale);
+	}
+
+	public static String lowerKebabCase(final String value)
+	{
+		return lowerKebabCase(value, Locale.getDefault());
+	}
+
+	public static String upperCamelCase(final String value, final Locale locale)
+	{
+		if(value == null)
+			return null;
+
+		final String[] parts = value.split("\\s+");
+		final String start = parts[0].toLowerCase(locale);
+
+		final StringBuilder camelCase = new StringBuilder(capitalize(start));
+
+		for(int i = 1; i < parts.length; i++) {
+			final String part = parts[i].toLowerCase(locale);
+			camelCase.append(capitalize(part));
+		}
+
+		return camelCase.toString();
+	}
+
+	public static String upperCamelCase(final String value)
+	{
+		return upperCamelCase(value, Locale.getDefault());
+	}
+
+	public static String lowerCamelCase(final String value, final Locale locale)
+	{
+		if(value == null)
+			return null;
+
+		final String[] parts = value.split("\\s+");
+		final String start = parts[0].toLowerCase(locale);
+
+		final StringBuilder builder = new StringBuilder(start);
+
+		for(int i = 1; i < parts.length; i++) {
+			final String part = capitalize(parts[i].toLowerCase(locale));
+			builder.append(part);
+		}
+
+		return builder.toString();
+	}
+
+	public static String lowerCamelCase(final String value)
+	{
+		return lowerCamelCase(value, Locale.getDefault());
+	}
+
 	public static String capitalize(final String value)
 	{
 		if(value == null)

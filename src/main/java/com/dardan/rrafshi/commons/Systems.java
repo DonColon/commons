@@ -69,6 +69,42 @@ public final class Systems
 		return Paths.get(getSystemProperty("user.home"));
 	}
 
+	public static Path getDownloadsPath()
+	{
+		final Path homePath = getHomePath();
+		return homePath.resolve("Downloads");
+	}
+
+	public static Path getDesktopPath()
+	{
+		final Path homePath = getHomePath();
+		return homePath.resolve("Desktop");
+	}
+
+	public static Path getDocumentsPath()
+	{
+		final Path homePath = getHomePath();
+		return homePath.resolve("Documents");
+	}
+
+	public static Path getPicturesPath()
+	{
+		final Path homePath = getHomePath();
+		return homePath.resolve("Pictures");
+	}
+
+	public static Path getVideosPath()
+	{
+		final Path homePath = getHomePath();
+		return homePath.resolve("Videos");
+	}
+
+	public static Path getMusicPath()
+	{
+		final Path homePath = getHomePath();
+		return homePath.resolve("Music");
+	}
+
 	public static Path getProjectPath()
 	{
 		return Paths.get(getSystemProperty("user.dir"));

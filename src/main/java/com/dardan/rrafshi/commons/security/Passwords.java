@@ -1,4 +1,4 @@
-package com.dardan.rrafshi.commons.crypto;
+package com.dardan.rrafshi.commons.security;
 
 import java.security.spec.KeySpec;
 import java.util.Base64;
@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.dardan.rrafshi.commons.Charsets;
 import com.dardan.rrafshi.commons.Constants;
 import com.dardan.rrafshi.commons.Systems;
-import com.dardan.rrafshi.commons.crypto.KeystoreException.KeystoreNotFound;
+import com.dardan.rrafshi.commons.security.KeystoreException.KeystoreNotFound;
 
 
 public final class Passwords

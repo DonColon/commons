@@ -1,4 +1,4 @@
-package com.dardan.rrafshi.commons.crypto;
+package com.dardan.rrafshi.commons.security;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 import com.dardan.rrafshi.commons.Constants;
-import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyAlreadyExist;
-import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyNotFound;
+import com.dardan.rrafshi.commons.security.KeystoreException.KeyAlreadyExist;
+import com.dardan.rrafshi.commons.security.KeystoreException.KeyNotFound;
 
 
 public final class KeystoreManager

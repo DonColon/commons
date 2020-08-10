@@ -1,4 +1,4 @@
-package com.dardan.rrafshi.commons.crypto;
+package com.dardan.rrafshi.commons.security;
 
 import com.dardan.rrafshi.commons.exceptions.ApplicationException;
 

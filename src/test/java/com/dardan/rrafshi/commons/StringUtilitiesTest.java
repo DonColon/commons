@@ -185,6 +185,61 @@ public final class StringUtilitiesTest
 
 
 	@Test
+	@DisplayName("string value to upper snake case")
+	public void valueToUpperSnakeCase()
+	{
+		final String expected = "USER_NAME";
+		final String actual = Strings.upperSnakeCase("User Name");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@DisplayName("string value to lower snake case")
+	public void valueToLowerSnakeCase()
+	{
+		final String expected = "user_name";
+		final String actual = Strings.lowerSnakeCase("User Name");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@DisplayName("string value to upper kebab case")
+	public void valueToUpperKebabCase()
+	{
+		final String expected = "USER-NAME";
+		final String actual = Strings.upperKebabCase("User Name");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@DisplayName("string value to lower kebab case")
+	public void valueToLowerKebabCase()
+	{
+		final String expected = "user-name";
+		final String actual = Strings.lowerKebabCase("User NAme");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@DisplayName("string value to upper camel case")
+	public void valueToUpperCamelCase()
+	{
+		final String expected = "UserName";
+		final String actual = Strings.upperCamelCase("USer Name");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@DisplayName("string value to lower camel case")
+	public void valueToLowerCamelCase()
+	{
+		final String expected = "userName";
+		final String actual = Strings.lowerCamelCase("USer NAme");
+		assertEquals(expected, actual);
+	}
+
+
+	@Test
 	@DisplayName("remove substring from string value")
 	public void removeSubstringFromValue()
 	{

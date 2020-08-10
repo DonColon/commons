@@ -6,10 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.dardan.rrafshi.commons.Strings;
-import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyAlreadyExist;
-import com.dardan.rrafshi.commons.crypto.KeystoreException.KeyNotFound;
-import com.dardan.rrafshi.commons.crypto.KeystoreException.KeystoreNotFound;
-import com.dardan.rrafshi.commons.crypto.KeystoreManager;
+import com.dardan.rrafshi.commons.security.KeystoreException.KeyAlreadyExist;
+import com.dardan.rrafshi.commons.security.KeystoreException.KeyNotFound;
+import com.dardan.rrafshi.commons.security.KeystoreException.KeystoreNotFound;
+import com.dardan.rrafshi.commons.security.KeystoreManager;
 
 
 public final class KeystoreCli

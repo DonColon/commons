@@ -45,7 +45,7 @@
 		<junit.platform.version>1.4.1</junit.platform.version>
 		<mockito.version>2.25.1</mockito.version>
 		<log4j.version>2.13.3</log4j.version>
-		<jackson.version>2.11.2</jackson.version>
+		<jackson.version>2.12.6.1</jackson.version>
 	</properties>
 
 	<dependencies>
